@@ -14,5 +14,16 @@ module.exports = function toReadable (number) {
   }
   arr.reverse()
   
+  let ident = '';
+  if (number < 10) {
+      ident = 'ones'
+  } else if (number >= 10 && number <= 99) {
+      ident = 'tens'
+  } else if (number >= 100 && number <= 999) {
+      ident = 'hundreds'
+  } else if (number >= 1000 && number <= 9999) {
+      ident = 'thousands'
+  }
+
   return result
 }
