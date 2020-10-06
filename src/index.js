@@ -25,5 +25,17 @@ module.exports = function toReadable (number) {
       ident = 'thousands'
   }
 
+  if (number == 0) {
+    result.concat(zero) 
+  } else if (ident === 'ones') {
+    result.concat(ones[number-1])
+  } else if (ident === 'tens') {
+    result.concat(tens[arr[0]-1], ones[arr[1]-1])
+  } else if (ident === 'hundreds') {
+    result.concat(hundreds[arr[0]-1], tens[arr[1]-1], ones[arr[0]-1])
+  } else if (ident === 'thousands') {
+    result.concat(thousands[arr[0]-1], hundreds[arr[1]-1], tens[arr[2]-1], ones[arr[3]-1])
+  }
+
   return result
 }
