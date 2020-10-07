@@ -37,18 +37,17 @@ module.exports = function toReadable (number) {
     isTens = true;
   }
 
-  if (ident == 'zero') {
-    result = `${zero}`
-  } else if (ident === 'ones') {
-    result = `${ones[number-1]}`
-  } else if (ident === 'dozens') {
-    result = `${tens[arr[0]-1]} ${ones[arr[1]-1]}`
-  } else if (ident === 'hundreds') {
-    result = `${hundreds[arr[0]-1]} ${tens[arr[1]-1]} ${ones[arr[2]-1]}`
-  } else if (ident === 'thousands') {
-    result = `${thousands[arr[0]-1]} ${hundreds[arr[1]-1]} ${tens[arr[2]-1]} ${ones[arr[3]-1]}`
-
+  switch (ident) {
+    case 'zero':
+      result = `${zero}`
+    case 'ones': 
+      result = `${ones[number-1]}`
+    case 'dozens':
+      result = `${tens[arr[0]-1]} ${ones[arr[1]-1]}`
+    case 'hundreds': 
+      result = `${hundreds[arr[0]-1]} ${tens[arr[1]-1]} ${ones[arr[2]-1]}`
+    case 'thousands':
+      result = `${thousands[arr[0]-1]} ${hundreds[arr[1]-1]} ${tens[arr[2]-1]} ${ones[arr[3]-1]}`
   }
-
   return result
 }
