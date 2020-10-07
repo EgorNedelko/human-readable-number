@@ -2,7 +2,7 @@ module.exports = function toReadable (number) {
   let result = ''
   let zero = 'zero'
   let ones = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-  let tens = ['eleven', 'twelve', 'thirteen', 'fourteen', 'fifteeb', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
+  let tens = ['eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
   let dozens = ['ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
   let hundreds = ['one hundred', 'two hundred', 'three hundred', 'four hundred', 'five hundred', 'six hundred', 'seven hundred', 'eight hundred', 'nine hundred']
 
@@ -42,13 +42,16 @@ module.exports = function toReadable (number) {
       break
     case 'dozens':
       if (isTens) {result = `${tens[tensPart[1]-1]}`}
+      else if (arr[1] == 0) {result = `${dozens[arr[0]-1]}`}
       else {result = `${dozens[arr[0]-1]} ${ones[arr[1]-1]}`}
       break
     case 'hundreds': 
       if (isTens) {result = `${hundreds[arr[0]-1]} ${tens[tensPart[1]-1]}`}
+      else if (arr[1] == 0 && arr[2] != 0) {result = `${hundreds[arr[0]-1]} ${ones[arr[2]-1]}`}
+      else if (arr[1] != 0 && arr[2] == 0) {result = `${hundreds[arr[0]-1]} ${dozens[arr[1]-1]}`}
+      else if (arr[1] == 0 && arr[2] == 0) {result = `${hundreds[arr[0]-1]}`}
       else {result = `${hundreds[arr[0]-1]} ${dozens[arr[1]-1]} ${ones[arr[2]-1]}`}
       break
   }
-
   return result
 }
